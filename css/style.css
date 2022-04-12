@@ -1,0 +1,66 @@
+#mouse-canvas {
+    min-width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+p , h1, h2, h3 {
+    font-family: Verdana, sans-serif;
+}
+
+#bg-video {
+    min-width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.container{
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.87);
+    background: rgba(0, 33, 73, 0.83);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 10px;
+
+}
+
+.instructions{
+    color: white;
+}
+
+.demo-section{
+    background: rgba(156, 204, 255, 0.89);
+    color: black;
+}
+
+.big-button{
+    font-size: xx-large;
+    border-radius: 10px;
+}
+
+a{
+    color: white;
+}
+
+.div {
+    z-index: 0;
+}

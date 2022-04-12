@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>Air Mouse Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Mediapipe local file -->
+    <!--
+    <script src="js/mediapipe/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="js/mediapipe/control_utils.js" crossorigin="anonymous"></script>
+    <script src="js/mediapipe/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="js/mediapipe/hands.js" crossorigin="anonymous"></script>
+    -->
+
+    <!-- Mediapipe cdn file -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+    <!-- counter script, you can delete it -->
+    <script>
+        let c = 0
+        function counter(){
+            c++;
+            let element = document.getElementById("button-counter")
+            element.innerText = "Number of button presses: " + c;
+        }
+    </script>
+</head>
+<body>
+
+<!-- Canvas mouse -->
+<canvas id="mouse-canvas"></canvas>
+<!-- Canvas webcam -->
+<video autoplay muted loop id="bg-video"></video>
+
+<!-- You can delete everything inside the body underneath -->
+<div class="container">
+    <h1>Air Mouse Demo</h1>
+    <p>Made by <a href="https://github.com/a55mage">a55mage</a></p>
+</div>
+
+<div class="container instructions">
+    <h2>🔴 Movement 👋</h2>
+    <p>Move your hand in front of the camera, a red dot will appear to represent the mouse cursor</p>
+    <h2>🟡 Click 👌</h2>
+    <p>Pinch the <b>index finger</b> and the <b>thumb</b>, a yellow dot will appear, meaning you have correctly clicked</p>
+    <h2>🟢 Scroll</h2>
+    <p>Pinch the <b>middle finger</b> and the <b>thumb</b>, a green dot will appear, meaning you have correctly clicked</p>
+</div>
+
+<div class="container instructions">
+    <h2>Usage</h2>
+    <p>You can use this project as starting point, the HTML index only needs the script tags, the canvas and the video component,
+        everything else is deletable.</p>
+    <h2>How does it work?</h2>
+    <p>The hand recognition is managed by <a href="https://google.github.io/mediapipe/">Google's MediaPipe</a>.</p>
+    <p>My script uses mediapipe's hand recognition to get the coordinates and position a fake cursor inside the canvas.
+    Clicking and scrolling is managed in simple javascript</p>
+    <h2>Issues</h2>
+    <h3>What can I use this for?</h3>
+    <p>I made this as a substitute for touchscreen interaction, especially for devices like multimedia totems,
+        but this can be used as an accessibility tool too</p>
+    <h3>Lag</h3>
+    <p>Try a different browser, works well with chromium but ultimately it depends on your CPU performance, from what I've tested, it works great
+        on any modern quad-core or superior CPU (tested on Intel i5-10400 and apple M1)</p>
+    <h3>Precision</h3>
+    <p>Precision can be improved by using a good webcam in a well lit environment, but you can tweak the
+        "minDetectionConfidence" and "minTrackingConfidence" parameters to find what works best for you</p>
+</div>
+
+<div class="container demo-section">
+    <h2 id="button-counter">Number of button presses: 0</h2>
+    <button class="big-button" onclick="counter()">Click me</button>
+
+    <h2>Long text to try out the scroll</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus luctus velit, quis rutrum massa lobortis nec. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent consequat metus quis nisi interdum scelerisque. Ut a nulla sed turpis ornare elementum sit amet ut felis. Morbi elementum metus id fringilla commodo. Nunc accumsan, metus eu suscipit bibendum, est turpis mollis neque, quis facilisis lorem dolor quis ipsum. Fusce non nulla nunc. Phasellus semper in tellus id tristique. Duis euismod vel nibh sed sollicitudin. Fusce non sollicitudin tellus, sit amet dictum arcu. Etiam non massa vel elit congue ultrices rutrum laoreet justo.
+        Praesent vulputate cursus risus, vitae imperdiet enim egestas a. Integer pharetra justo a enim ultricies molestie. Nunc lacus orci, ultricies eu ultricies sit amet, pharetra luctus dolor. Nulla odio mauris, luctus convallis eros ac, maximus malesuada libero. Suspendisse volutpat efficitur mauris, quis sagittis metus commodo vitae. Duis eu pretium erat. Curabitur ac diam ut justo pharetra efficitur vel a mauris. Vestibulum vulputate nibh nec lectus pulvinar ultrices. Praesent sollicitudin risus eu magna accumsan tempor. Donec orci massa, fringilla ut quam vitae, ultrices porttitor libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum aliquet leo urna, feugiat fermentum tortor eleifend sed.
+        Cras imperdiet condimentum odio nec mollis. Vivamus auctor justo condimentum eleifend efficitur. Fusce vel ullamcorper nibh, non porta odio. Nulla luctus laoreet eros, eu convallis erat scelerisque non. Fusce sagittis libero mauris, sit amet varius nisl tincidunt non. Mauris consectetur diam eget sem porttitor maximus. Sed aliquet hendrerit velit, ut porttitor nisi eleifend vitae.
+        Integer dictum augue at velit maximus eleifend. Nulla vulputate, odio nec auctor tincidunt, odio purus tristique lacus, ut malesuada urna nisi nec eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec quis erat faucibus, accumsan nisi non, congue tortor. Ut faucibus ultrices elit sed ultrices. Nunc neque nisl, suscipit sed elit vel, malesuada malesuada ipsum. Nullam pellentesque rhoncus iaculis. Suspendisse tincidunt urna pellentesque, venenatis sem eu, mollis diam. In ultricies sem et iaculis viverra. Sed quis lorem eget leo dapibus interdum. Nam maximus ante non orci lacinia viverra.
+        Etiam risus lacus, faucibus sit amet ex et, porttitor mattis velit. Suspendisse vitae bibendum ligula. Morbi id risus congue, blandit mi tincidunt, laoreet diam. Proin molestie lacus lorem, id cursus enim tincidunt quis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Donec faucibus tortor vel egestas mollis. Morbi ullamcorper rhoncus iaculis. Vestibulum quis nisl at ex pellentesque cursus in vitae purus. Cras nec commodo diam, nec vulputate ex. Curabitur eget sollicitudin quam. In in mi tortor. In blandit metus in est condimentum, nec varius libero elementum. Etiam bibendum pharetra justo, sed dapibus velit scelerisque a.
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus luctus velit, quis rutrum massa lobortis nec. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent consequat metus quis nisi interdum scelerisque. Ut a nulla sed turpis ornare elementum sit amet ut felis. Morbi elementum metus id fringilla commodo. Nunc accumsan, metus eu suscipit bibendum, est turpis mollis neque, quis facilisis lorem dolor quis ipsum. Fusce non nulla nunc. Phasellus semper in tellus id tristique. Duis euismod vel nibh sed sollicitudin. Fusce non sollicitudin tellus, sit amet dictum arcu. Etiam non massa vel elit congue ultrices rutrum laoreet justo.
+        Praesent vulputate cursus risus, vitae imperdiet enim egestas a. Integer pharetra justo a enim ultricies molestie. Nunc lacus orci, ultricies eu ultricies sit amet, pharetra luctus dolor. Nulla odio mauris, luctus convallis eros ac, maximus malesuada libero. Suspendisse volutpat efficitur mauris, quis sagittis metus commodo vitae. Duis eu pretium erat. Curabitur ac diam ut justo pharetra efficitur vel a mauris. Vestibulum vulputate nibh nec lectus pulvinar ultrices. Praesent sollicitudin risus eu magna accumsan tempor. Donec orci massa, fringilla ut quam vitae, ultrices porttitor libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum aliquet leo urna, feugiat fermentum tortor eleifend sed.
+        Cras imperdiet condimentum odio nec mollis. Vivamus auctor justo condimentum eleifend efficitur. Fusce vel ullamcorper nibh, non porta odio. Nulla luctus laoreet eros, eu convallis erat scelerisque non. Fusce sagittis libero mauris, sit amet varius nisl tincidunt non. Mauris consectetur diam eget sem porttitor maximus. Sed aliquet hendrerit velit, ut porttitor nisi eleifend vitae.
+        Integer dictum augue at velit maximus eleifend. Nulla vulputate, odio nec auctor tincidunt, odio purus tristique lacus, ut malesuada urna nisi nec eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec quis erat faucibus, accumsan nisi non, congue tortor. Ut faucibus ultrices elit sed ultrices. Nunc neque nisl, suscipit sed elit vel, malesuada malesuada ipsum. Nullam pellentesque rhoncus iaculis. Suspendisse tincidunt urna pellentesque, venenatis sem eu, mollis diam. In ultricies sem et iaculis viverra. Sed quis lorem eget leo dapibus interdum. Nam maximus ante non orci lacinia viverra.
+        Etiam risus lacus, faucibus sit amet ex et, porttitor mattis velit. Suspendisse vitae bibendum ligula. Morbi id risus congue, blandit mi tincidunt, laoreet diam. Proin molestie lacus lorem, id cursus enim tincidunt quis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Donec faucibus tortor vel egestas mollis. Morbi ullamcorper rhoncus iaculis. Vestibulum quis nisl at ex pellentesque cursus in vitae purus. Cras nec commodo diam, nec vulputate ex. Curabitur eget sollicitudin quam. In in mi tortor. In blandit metus in est condimentum, nec varius libero elementum. Etiam bibendum pharetra justo, sed dapibus velit scelerisque a.
+    </p>
+</div>
+</body>
+
+<!-- AirMouse main script -->
+<script src="js/index.js"></script>
+</html>
